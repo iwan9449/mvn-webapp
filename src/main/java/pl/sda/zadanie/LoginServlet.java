@@ -13,6 +13,8 @@ import java.util.Optional;
 @WebServlet(name = "login", urlPatterns = "/login")
 public class LoginServlet extends HttpServlet {
 
+    private UserRepository userRepository = UserRepository.getInstance();
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
@@ -23,7 +25,6 @@ public class LoginServlet extends HttpServlet {
             String login = req.getParameter("login");
             String password = req.getParameter("password");
 
-            UserRepository userRepository = new UserRepository();
             Optional<User> optUser = userRepository.getUserByLoginData(login, password);
 
             if (optUser.isPresent()) {

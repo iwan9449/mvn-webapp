@@ -7,8 +7,16 @@ import java.util.Optional;
 public class UserRepository {
 
     private List<User> users;
+    private static UserRepository instance = null;
 
-    public UserRepository() {
+    public static UserRepository getInstance() {
+        if (instance == null) {
+            instance = new UserRepository();
+        }
+        return instance;
+    }
+
+    private UserRepository() {
         users = new ArrayList<>();
         users.add(new User("user", "user123", Role.USER));
         users.add(new User("admin", "admin123", Role.ADMIN));

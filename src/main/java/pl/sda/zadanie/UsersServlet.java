@@ -12,10 +12,11 @@ import java.util.List;
 @WebServlet(name = "users", urlPatterns = "/users")
 public class UsersServlet extends HttpServlet {
 
+    private UserRepository userRepository = UserRepository.getInstance();
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        UserRepository userRepository = new UserRepository();
         List<User> users = userRepository.getUsers();
 
         PrintWriter writer = resp.getWriter();
